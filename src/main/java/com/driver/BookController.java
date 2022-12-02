@@ -53,13 +53,15 @@ public class BookController {
     }
 
     @GetMapping("/get-book-by-id/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable("id") int id){
-        return new ResponseEntity<>(bookList.get(id-1),HttpStatus.ACCEPTED);
+    public ResponseEntity<Book> getBookById(@PathVariable("id") String id){
+        int idx = Integer.parseInt(id);
+        return new ResponseEntity<>(bookList.get(idx-1),HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/delete-book-by-id/{id}")
-    public ResponseEntity<String> deleteBookById(@PathVariable("id") int id){
-        bookList.remove(id-1);
+    public ResponseEntity<String> deleteBookById(@PathVariable("id") String id){
+        int idx = Integer.parseInt(id);
+        bookList.remove(idx-1);
         return new ResponseEntity<>("success",HttpStatus.ACCEPTED);
     }
 
